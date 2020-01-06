@@ -1,0 +1,19 @@
+.navbar{
+  width: 170px;
+  background-color:rgba(93, 50, 20, 0.979);
+  margin-top: 54px;
+  margin-left: 5px; 
+  padding-left: 20px;
+  padding-top: 20px;
+}
+a{
+  text-decoration: none;
+  color:white;
+  padding-top: 30px;
+}
+.reference{
+  margin-top: 20px;
+}
+.lastRef{
+  margin-bottom: 200px;
+}

@@ -1,0 +1,16 @@
+.profile{
+  background:url('https://lp-cms-production.imgix.net/2019-06/d29f08e97892053daeecc25ff5de908a-japan.jpeg?fit=crop&q=40&sharp=10&vib=20&auto=format&ixlib=react-8.6.4') no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  margin-top: 54px;
+  margin-left: 5px;
+  width: 85%;
+  height: 90vh;
+  color:white;
+}
+.item{
+  margin-left: 40px;
+}
+.item2{
+  margin-left: 40px;
+}
