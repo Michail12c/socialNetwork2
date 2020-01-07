@@ -5,7 +5,8 @@ import Post from './Post/Post';
 const MyPosts = () =>{
   return (
      <div className = {styles.myPosts}>
-       <Post/>
+       <Post message = "Hello React" likeCount = "5"/>
+       <Post message = "It is my first post" likeCount = "2"/>
         <div className = {styles.form}>
         <textarea>
         </textarea>

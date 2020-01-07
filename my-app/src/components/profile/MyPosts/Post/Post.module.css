@@ -1,9 +1,10 @@
+.post{
+  margin-top: 20px;
+}
 .item{
- 
   background-color:  rgba(141, 124, 111, 0.7);
   width: 200px;
   padding: 20px 0px 30px 20px;
-
 }
 .item img {
   width: 30px;
@@ -14,5 +15,4 @@
   margin-left: 10px;
   color:black;
   font-weight: bold;
-  
 }
