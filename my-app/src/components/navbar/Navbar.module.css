@@ -6,10 +6,13 @@
   padding-left: 20px;
   padding-top: 20px;
 }
-a{
+.reference a{
   text-decoration: none;
   color:white;
   padding-top: 30px;
+}
+.active{
+  color:gold;
 }
 .reference{
   margin-top: 20px;

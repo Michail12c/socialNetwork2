@@ -2,11 +2,12 @@ import React from 'react';
 import styles from './MyPosts.module.css';
 import Post from './Post/Post';
 
-const MyPosts = () =>{
+const MyPosts = (props) =>{
+   let postsElement = props.posts.map( (post, index) => <Post message = {props.posts[index].message} likeCount = {props.posts[index].likeCount}/>)
+
   return (
      <div className = {styles.myPosts}>
-       <Post message = "Hello React" likeCount = "5"/>
-       <Post message = "It is my first post" likeCount = "2"/>
+         {postsElement}
         <div className = {styles.form}>
         <textarea>
         </textarea>
