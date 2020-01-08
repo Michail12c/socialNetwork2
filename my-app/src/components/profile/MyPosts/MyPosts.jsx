@@ -3,16 +3,25 @@ import styles from './MyPosts.module.css';
 import Post from './Post/Post';
 
 const MyPosts = (props) =>{
-   let postsElement = props.posts.map( (post, index) => <Post message = {props.posts[index].message} likeCount = {props.posts[index].likeCount}/>)
+   let postsElement = props.posts.map( post => <Post message = {post.message} likeCount = {post.likeCount}/>)
+
+   let newPostElement = React.createRef();
+   const addPost = () =>{
+      let text = newPostElement.current.value;
+      props.addPost(text);
+   }
+   const onPostChange = () => {
+      let text = newPostElement.current.value;
+      props.onUpdateChange(text);
+   }
 
   return (
-     <div className = {styles.myPosts}>
+       <div className = {styles.myPosts}>
          {postsElement}
         <div className = {styles.form}>
-        <textarea>
-        </textarea>
+        <textarea onChange ={onPostChange} ref = {newPostElement} value = {props.newPostText}/>
         <div>
-          <button>add Post</button>
+          <button onClick = {addPost}>add Post</button>
         </div>
         </div>
      </div>
