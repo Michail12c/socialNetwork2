@@ -7,8 +7,7 @@ const Profile = (props) =>{
     <div className = {styles.profile}>
         <MyPosts posts = {props.posts.posts} 
          newPostText = {props.posts.newPostText}
-         addPost = {props.addPost} 
-         onUpdateChange = {props.onUpdateChange}/> 
+         dispatch  = {props.dispatch} /> 
     </div>
   )
 }
