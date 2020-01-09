@@ -12,7 +12,7 @@ const MyPostsContainer = (props) =>{
    }
 
   return (
-  <MyPosts addPostContainer = {addPost} onPostChangeContainer = {onPostChange} state = {state}/>
+  <MyPosts addPostContainer = {addPost} onPostChangeContainer = {onPostChange} state = {state.profilePage.posts}/>
   )
 }
 
