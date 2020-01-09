@@ -1,5 +1,8 @@
 const ADD_POST  =  "ADD-POST";
 const ON_UPDATE_CHANGE = "ON-UPDATE-CHANGE";
+const SEND_MESSAGE = "SEND-MESSAGE";
+const ON_UPDATE_CHANGE_TEXT_BODY = "ON-UPDATE-CHANGE-TEXT-BODY";
+
 
 let store = {
     _state: {
@@ -24,7 +27,8 @@ let store = {
       {id:2, message:"Today, I writing code"},
       {id:3, message:"So. What is React? Library or framework?"},
       {id:4, message:"I think that framework"}
-    ]
+    ],
+    newTextMessage: ''
   }
 },
    getstate() {
@@ -37,7 +41,7 @@ let store = {
     this.callSubscriber = observer;
   },
  dispatch(action){
-   if(action.type == ADD_POST){
+   if(action.type === ADD_POST){
     let newPost = {
       id:2,
       message:this._state.profilePage.newPostText,
@@ -47,9 +51,19 @@ let store = {
     this._state.profilePage.newPostText = " ";
     this.callSubscriber(this._state);
    }
-   else if(action.type == ON_UPDATE_CHANGE){
+   else if(action.type === ON_UPDATE_CHANGE){
     this._state.profilePage.newPostText = action.newText;
     this.callSubscriber(this._state);
+   }
+   else if(action.type === SEND_MESSAGE){
+     let body = this._state.dialogsPage.newTextMessage;
+     this._state.dialogsPage.newTextMessage = ' ';
+     this._state.dialogsPage.messages.push({id:5, message: body});
+     this.callSubscriber(this._state);
+   }
+   else if(action.type === ON_UPDATE_CHANGE_TEXT_BODY){
+     this._state.dialogsPage.newTextMessage = action.body;
+     this.callSubscriber(this._state);
    }
  }
 }
@@ -60,6 +74,12 @@ export const addPostActionCreator = () => {
 }
 export const onUpDateActionCreator = (text) => {
   return {type: ON_UPDATE_CHANGE, newText: text} 
+}
+export const sendMessageCreator = () => {
+  return {type: SEND_MESSAGE}
+}
+export const updateNewMessageBodyCreator = (body) => {
+  return {type:ON_UPDATE_CHANGE_TEXT_BODY, body: body }
 }
 
 export default store;
