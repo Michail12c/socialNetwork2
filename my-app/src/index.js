@@ -7,9 +7,6 @@ import './index.css';
 import App from './App';
 
 
-/* let rerenderAllThree = (state) => {
-  ReactDOM.render(<App state = {store.getState()} dispatch = {store.dispatch.bind(store)}/>, document.getElementById('root'));
-} */
 let rerenderAllThree = (state) => {
   ReactDOM.render(<App store = {store}/>, document.getElementById('root'));
 }

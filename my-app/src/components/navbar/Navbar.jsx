@@ -11,6 +11,9 @@ const Navbar = () =>{
        <div className = {styles.reference}>
          <NavLink to="/Dialogs" activeClassName = {styles.active}>Messages</NavLink>
        </div>
+       <div className = {styles.reference}>
+         <NavLink to = "/Images" activeClassName = {styles.active}>Images</NavLink>
+       </div>
        <div className ={styles.reference}>
          <a href="">News</a>
        </div>

@@ -28,7 +28,7 @@ const Dialogs = (props) => {
         <div>
            {dialogsElement}
         </div>
-        <div>
+        <div className = {styles.message}>
           {messagesElement}
           <div>
             <div>
