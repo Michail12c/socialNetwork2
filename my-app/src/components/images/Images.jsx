@@ -4,6 +4,7 @@ import Image from './image/image';
 
 const Images = (props) => {
 
+  console.log(props)
 
   let imagesElement = props.image.map(image => <Image url={image.url} title={image.title} />)
 

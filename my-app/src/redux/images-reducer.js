@@ -9,7 +9,6 @@ let initialState = {
 }
 
 const imagesReducer = (state = initialState, action) => {
-  debugger
   switch (action.type){
     case ADD_IMAGES:
     let newImage = {

@@ -1,17 +1,21 @@
 import React from 'react';
 import Images from './Images';
 import { sendImagesCreator } from '../../redux/images-reducer';
+import { connect } from 'react-redux';
 
-const ImagesContainer = (props) => {
-let imageElement  = props.store.getState();
+const mapStateToProps = (state) =>{
+  return {
+    image:state.imagesPage.images
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    sendImageContainer: (url, title) => {
+      dispatch(sendImagesCreator(url, title)) 
+    }
+  }
+}
 
-const sendImage = (url, title) =>{
-  props.store.dispatch(sendImagesCreator(url, title) )
-}
-  
-  return (
-     <Images image = {imageElement.imagesPage.images} sendImageContainer = {sendImage} />
-  )
-}
+const ImagesContainer = connect(mapStateToProps, mapDispatchToProps)(Images);
 
 export default ImagesContainer;
