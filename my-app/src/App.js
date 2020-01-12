@@ -8,6 +8,7 @@ import Navbar from './components/navbar/Navbar';
 import Profile from './components/profile/Profile';
 import DialogsContainer from './components/dialogs/DialogsContainer';
 import ImagesContainer from './components/images/ImagesContainer';
+import UsersContainer from './components/users/UsersContainer';
 
 
 
@@ -23,6 +24,7 @@ const App = (props) => {
       <Route path = '/Profile' render = { () => <Profile/>}/>
       <Route path = '/Dialogs' render = {() => <DialogsContainer/>}/>
       <Route path = '/Images' render = {()=> <ImagesContainer/>}/>
+      <Route path ='/Users' render = { () => <UsersContainer/>} />
     </div>
     </div>
     </Provider>

@@ -1,0 +1,27 @@
+.users{
+    background-color: rgb(149, 58, 58);
+    margin-top: 54px;
+    margin-left: 5px;
+    width: 85%;
+    color:white;
+    padding: 40px;
+}
+.icon{
+  padding-left: 20px;
+  padding-bottom: 20px;
+}
+.icon img {
+  width: 60px;
+  height: 80px;
+  margin-top: 20px;
+}
+.usersView{
+  display: flex;
+  width: 500px;
+  background-color: rgb(129, 97, 97);
+  margin-top: 10px;
+}
+.userInfo{
+  padding-top: 105px;
+  padding-left: 50px;
+}
