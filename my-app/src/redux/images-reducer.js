@@ -16,8 +16,10 @@ const imagesReducer = (state = initialState, action) => {
       url: action.newUrl,
       title:action.newTitle
     }
-    state.images.push(newImage);
-    return state;
+    return {
+      ...state,
+      images:[...state.images, newImage]
+    }
     default:
       return state;
   }

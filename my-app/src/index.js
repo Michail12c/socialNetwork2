@@ -7,12 +7,6 @@ import './index.css';
 import App from './App';
 
 
-let rerenderAllThree = (state) => {
+
   ReactDOM.render(<App store = {store}/>, document.getElementById('root'));
-}
-rerenderAllThree(store.getState());
-store.subscribe(rerenderAllThree);
-
-export default rerenderAllThree;
-
 serviceWorker.unregister();
