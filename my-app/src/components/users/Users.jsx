@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Users.module.css';
 import userPhoto from './../icon/user.png';
 import Preloader from '../common/Preloader';
+import { NavLink } from 'react-router-dom';
 
 const Users = (props) => {
   let pageCalculateSize = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -26,7 +27,9 @@ const Users = (props) => {
         {
           props.users.map( user => <div className={styles.usersView}>
             <div className = {styles.icon}>
+              <NavLink to = { '/profile/' + user.id } >
               <img src={user.photos.small != null ? user.photos.small : userPhoto } alt="icon"/>
+              </NavLink>
               <div className = {styles.iconName}>
               {user.name}
               <div>

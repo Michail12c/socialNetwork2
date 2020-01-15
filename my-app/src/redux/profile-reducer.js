@@ -1,11 +1,13 @@
 const ADD_POST  =  "ADD-POST";
 const ON_UPDATE_CHANGE = "ON-UPDATE-CHANGE";
+const SET_USER_PROFILE = "SET-USER-PROFILE";
 
 let initialState = {
   posts: [
     {id:1, message: "Hello React", likeCount:5 }
   ],
-  newPostText: "I am learn React"
+  newPostText: "I am learn React",
+  profile: null
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -26,6 +28,12 @@ const profileReducer = (state = initialState, action) => {
        ...state,
        newPostText:action.newText
      }
+
+     case SET_USER_PROFILE:
+       return{
+         ...state,
+         profile: action.profile
+       }
     default:
       return state;
   } 
@@ -36,6 +44,9 @@ export const addPostActionCreator = () => {
 }
 export const onUpDateActionCreator = (text) => {
   return {type: ON_UPDATE_CHANGE, newText: text} 
+}
+export const setUserProfile = (profile) => {
+  return {type: SET_USER_PROFILE, profile}
 }
 
 export default profileReducer;
