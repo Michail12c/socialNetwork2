@@ -5,6 +5,7 @@
     width: 85%;
     color:white;
     padding: 40px;
+    overflow: hidden;
 }
 .icon{
   padding-left: 20px;
@@ -24,4 +25,16 @@
 .userInfo{
   padding-top: 105px;
   padding-left: 50px;
+}
+.page{
+  color:black;
+}
+.selected{
+  color:rgb(168, 172, 136);
+}
+span{
+   margin-right: 5px;
+}
+span:hover{
+  cursor:pointer;
 }
