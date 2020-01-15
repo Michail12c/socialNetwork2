@@ -3,12 +3,12 @@ import './App.css';
 import {BrowserRouter, Route} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/redux-store';
-import Header from './components/header/Header';
 import Navbar from './components/navbar/Navbar';
 import DialogsContainer from './components/dialogs/DialogsContainer';
 import ImagesContainer from './components/images/ImagesContainer';
 import UsersContainer from './components/users/UsersContainer';
 import ProfileContainer from './components/profile/ProfileContainer';
+import HeaderContainer from './components/header/HeaderContainer';
 
 
 
@@ -18,7 +18,7 @@ const App = (props) => {
    <BrowserRouter> 
    <Provider store = {store}>
     <div className="App">
-      <Header/>
+      <HeaderContainer/>
     <div className = "app-wrapper">
       <Navbar/>
       <Route path = '/Profile/:userId?' render = { () => <ProfileContainer/>}/>

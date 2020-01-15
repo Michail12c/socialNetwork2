@@ -16,4 +16,20 @@
   font-style: italic;
   padding-right: 40px;
   padding-top: 10px;
+  margin-left: 70%;
+}
+.login{
+  padding-top: 10px;
+}
+.login a{
+  color:white;
+  text-decoration: none;
+  margin-right: 30px;
+}
+.login a:hover{
+  cursor: pointer;
+}
+.myLogin{
+  color:white;
+  margin-right: 30px;
 }
