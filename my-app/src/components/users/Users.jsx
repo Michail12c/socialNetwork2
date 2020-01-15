@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Users.module.css';
 import userPhoto from './../icon/user.png';
+import Preloader from '../common/Preloader';
 
 const Users = (props) => {
   let pageCalculateSize = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -10,6 +11,7 @@ const Users = (props) => {
   }
     return (
       <div className = {styles.users}>
+        {props.isFetching ? <Preloader/> : null }
         <div>
         {   pages.map( page => {
            return <span className = { props.currentPage === page && styles.selected}
@@ -55,4 +57,4 @@ const Users = (props) => {
   }
 
 
-export default Users;
+export default Users; 
