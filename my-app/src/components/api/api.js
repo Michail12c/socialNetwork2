@@ -14,5 +14,19 @@ export const userAPI = {
       .then(response => {
         return response.data;
       })
+  },
+  disabled(userId){
+      return  instance.delete(`follow/${userId}`)
+  },
+  noDisabled(userId){
+    return  instance.post(`follow/${userId}`)
+  },
+  getProfile(userId){
+    return instance.get(`profile/` + userId)
+  }
+}
+export const authAPI = {
+  me (){
+    return instance.get(`auth/me`)
   }
 }
