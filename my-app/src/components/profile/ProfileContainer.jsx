@@ -4,7 +4,7 @@ import * as axios from 'axios';
 import { connect } from 'react-redux';
 import {userProfileThunkCreator} from '../../redux/profile-reducer';
 import {withRouter} from 'react-router-dom';
-import { userAPI } from '../api/api';
+import { withAuthRedirect } from '../hoc/withAuthRedirect';
 
 
 class ProfileContainer extends React.Component {
@@ -27,8 +27,8 @@ class ProfileContainer extends React.Component {
 const mapStateToProps = (state) => {
   return {
     profile: state.profilePage.profile,
-    isAuth: state.auth.isAuth
   }
 }
-let ProfileContainerUrl = withRouter(ProfileContainer);
+let profileRedirect = withAuthRedirect(ProfileContainer)
+let ProfileContainerUrl = withRouter(profileRedirect);
 export default connect(mapStateToProps, { userProfileThunkCreator})(ProfileContainerUrl);
