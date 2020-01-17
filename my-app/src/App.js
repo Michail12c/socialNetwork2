@@ -9,6 +9,7 @@ import ImagesContainer from './components/images/ImagesContainer';
 import UsersContainer from './components/users/UsersContainer';
 import ProfileContainer from './components/profile/ProfileContainer';
 import HeaderContainer from './components/header/HeaderContainer';
+import Login from './components/login/Login';
 
 
 
@@ -24,7 +25,8 @@ const App = (props) => {
       <Route path = '/Profile/:userId?' render = { () => <ProfileContainer/>}/>
       <Route path = '/Dialogs' render = {() => <DialogsContainer/>}/>
       <Route path = '/Images' render = {()=> <ImagesContainer/>}/>
-      <Route path ='/Users' render = { () => <UsersContainer/>} />
+      <Route path ='/Users' render = {() => <UsersContainer/>} />
+      <Route path = '/Login' render = {() => <Login/> } />
     </div>
     </div>
     </Provider>
