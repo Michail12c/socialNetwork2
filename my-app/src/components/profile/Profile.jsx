@@ -8,7 +8,11 @@ import ProfileInfo from './ProfileInfo';
 const Profile = (props) =>{
   return (
     <div className = {styles.profile}>
-        <ProfileInfo {...props} profile = {props.profile} />
+        <ProfileInfo {...props} 
+        profile = {props.profile} 
+        status = {props.status}
+        updateProfileThunk = {props.updateProfileThunk}
+        />
         <MyPostsContainer/> 
     </div>
   )

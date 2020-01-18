@@ -1,15 +1,18 @@
-import { userAPI } from "../components/api/api";
+import { userAPI, profileAPI } from "../components/api/api";
 
 const ADD_POST  =  "ADD-POST";
 const ON_UPDATE_CHANGE = "ON-UPDATE-CHANGE";
 const SET_USER_PROFILE = "SET-USER-PROFILE";
+const SET_PROFILE_STATUS = "SET-PROFILE-STATUS";
+
 
 let initialState = {
   posts: [
     {id:1, message: "Hello React", likeCount:5 }
   ],
   newPostText: "I am learn React",
-  profile: null
+  profile: null,
+  status: ''
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -36,6 +39,11 @@ const profileReducer = (state = initialState, action) => {
          ...state,
          profile: action.profile
        }
+       case SET_PROFILE_STATUS:
+        return{
+          ...state,
+          status: action.status
+        }
     default:
       return state;
   } 
@@ -50,6 +58,9 @@ export const onUpDateActionCreator = (text) => {
 export const setUserProfile = (profile) => {
   return {type: SET_USER_PROFILE, profile}
 }
+export const setProfileStatus= (status) => {
+  return {type: SET_PROFILE_STATUS, status}
+}
 
 export const userProfileThunkCreator = (userId) => {
   return (dispatch) => {
@@ -59,4 +70,35 @@ export const userProfileThunkCreator = (userId) => {
     }) 
   }
 }
+export const setUserProfileThunk = (userId) => {
+  return (dispatch) => {
+    profileAPI.getProfileStatus(userId)
+    .then( response => {
+      dispatch(setProfileStatus(response.data));
+    }) 
+  }
+}
+export const updateProfileThunk = (status) => {
+  return (dispatch) => {
+    profileAPI.updateProfileStatus(status)
+    .then( response => {
+      if(response.data.resultCode === 0){
+        dispatch(setProfileStatus(status));
+      }
+    }) 
+  }
+}
+export const updateProfilePhotoThunk = (status) => {
+  return (dispatch) => {
+    profileAPI.updateProfileStatus(status)
+    .then( response => {
+      if(response.data.resultCode === 0){
+        dispatch(setProfileStatus(status));
+      }
+    }) 
+  }
+}
+
+
+
 export default profileReducer;
