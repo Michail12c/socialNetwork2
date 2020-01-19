@@ -33,3 +33,6 @@
   color:white;
   margin-right: 30px;
 }
+.logout:hover{
+  cursor: pointer;
+}

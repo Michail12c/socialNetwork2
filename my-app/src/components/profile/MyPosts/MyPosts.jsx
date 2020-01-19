@@ -2,7 +2,11 @@ import React from 'react';
 import styles from './MyPosts.module.css';
 import Post from './Post/Post';
 import { Field, reduxForm } from 'redux-form'
+import { maxLengthCreator, required } from '../../../utils/validators';
+import { Textarea } from '../../utils/FormsControls';
 
+
+let maxLength20 = maxLengthCreator(20); 
 
 const MyPosts = (props) => {
    let state = props.state;
@@ -17,7 +21,7 @@ const MyPosts = (props) => {
       <div className={styles.myPosts}>
          {postsElement}
          <div className={styles.form}>
-            <PostReduxForm onSubmit = {addPost}/>
+            <PostReduxForm onSubmit = {addPost}  />
          </div>
       </div>
    )
@@ -25,7 +29,9 @@ const MyPosts = (props) => {
 let addPostForm = (props) => {
    return (
       <form onSubmit = {props.handleSubmit}>
-         <Field component = {'textarea'} name = {'newPostText'}/>
+         <Field component = {Textarea}
+          name = {'newPostText'}
+          validate = {[required, maxLength20]}/>
          <div>
             <button>add Post</button>
          </div>

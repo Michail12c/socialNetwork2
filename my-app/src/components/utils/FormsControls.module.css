@@ -1,0 +1,9 @@
+.formsControls.error input,
+.formsControls.error textarea
+{
+  border: 2px solid rgb(180, 37, 37);
+}
+.text{
+  color:black;
+  font-weight: bold;
+}
