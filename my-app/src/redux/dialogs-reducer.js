@@ -1,5 +1,5 @@
 const SEND_MESSAGE = "SEND-MESSAGE";
-const ON_UPDATE_CHANGE_TEXT_BODY = "ON-UPDATE-CHANGE-TEXT-BODY";
+
 
 let initialState = {
   dialogs: [
@@ -16,34 +16,26 @@ let initialState = {
     {id:2, message:"Today, I writing code"},
     {id:3, message:"So. What is React? Library or framework?"},
     {id:4, message:"I think that framework"}
-  ],
-  newTextMessage: ''
+  ]
 }
 
 const dialogsReducer = (state = initialState, action) => {
   switch (action.type){
    case SEND_MESSAGE:
-    let body = state.newTextMessage;
+    let body = action.newMessageText;
     return {
       ...state,
       newTextMessage: '',
       messages: [...state.messages, {id:5, message: body}]
     }
-  case  ON_UPDATE_CHANGE_TEXT_BODY: 
-  return {
-    ...state,
-    newTextMessage:action.body
-  }
+
   default:
     return state;
   }
 }
 
-export const sendMessageCreator = () => {
-  return {type: SEND_MESSAGE}
-}
-export const updateNewMessageBodyCreator = (body) => {
-  return {type:ON_UPDATE_CHANGE_TEXT_BODY, body: body }
+export const sendMessageCreator = (newMessageText) => {
+  return {type: SEND_MESSAGE, newMessageText}
 }
 
 export default dialogsReducer;

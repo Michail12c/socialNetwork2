@@ -9,21 +9,15 @@ const mapStateToProps = (state) =>{
    return{
      messages:state.dialogsPage.messages,
      nameMessages:state.dialogsPage.dialogs,
-     newTextMessage:state.dialogsPage.newTextMessage,
    }
 }
 const mapDispatchToProps = (dispatch) =>{
    return {
-     messageBody: (body) => {
-      dispatch(updateNewMessageBodyCreator(body))
-     },
-     sendMessage: () => {
-      dispatch(sendMessageCreator())
+     sendMessage: (newMessageText) => {
+      dispatch(sendMessageCreator(newMessageText))
      }
    }
 }
-/* let dialogsRedirect = withAuthRedirect(Dialogs);
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(dialogsRedirect); */
 
 
 export default compose(
