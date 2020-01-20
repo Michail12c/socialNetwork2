@@ -8,3 +8,9 @@
   padding-left: 40px;
   padding-top: 20px;
 }
+.error{
+  border:2px solid red;
+  color:black;
+  font-weight: bold;
+  width: 30%;
+}
