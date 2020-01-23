@@ -3,32 +3,47 @@ import styles from './Users.module.css';
 import userPhoto from './../icon/user.png';
 import Preloader from '../common/Preloader';
 import { NavLink } from 'react-router-dom';
-import Paginator from './Paginator';
 
 
 
-const Users = ({pageSize, currentPage, onChangePage, totalUsersCount, users, ...props}) => {
+const Users = ({pageSize, currentPage, onChangePage, totalUsersCount, users, flag, pageReverse, ...props}) => {
    let pageCalculateSize = Math.ceil(totalUsersCount / pageSize);
 
   let pages = [];
-  for (let i = 1; i <= 20; i++) {
+ 
+  let start =  flag;
+  let finishNumber = start + 20;
+  if (flag == finishNumber){
+    start = finishNumber;
+    finishNumber += 20;
+    
+  }
+  if( finishNumber > pageCalculateSize){
+    finishNumber = pageCalculateSize;
+  }
+  if(start < 1){
+    start = 1;
+  }
+
+  for (let i = start; i <= finishNumber; i++) {
     pages.push(i);
   }
+ 
   return (
     <div className={styles.users}>
       {props.isFetching ? <Preloader /> : null}
       <div>
-    {/*   { <Paginator onChangePage = {onChangePage} currentPage = {currentPage} 
-        totalUsersCount = {totalUsersCount} pageSize = {pageSize} /> } */}
-      
-       { pages.map(page => {
-          return <span className={props.currentPage === page && styles.selected}
-            onClick={() => { props.onChangePage(page) }}
+        {
+          flag >= 10 && <button className = {styles.pageEnd} onClick = { () => {pageReverse(flag)}}>Назад</button>
+        }
+      {
+        pages.map(page => {
+          return <span key = {page} className={currentPage === page && styles.selected}
+            onClick={() => { onChangePage(page) } }
           >{page}</span>
         })
-
       }
-      ... {pageCalculateSize}
+   ... {pageCalculateSize}
    
         
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Users from './Users';
-import {  setUsers, setCurrentPage, setTotalUsersCount, isFetchingToggle, toggleFollowingProgress, getUsersThunkCreator, followThunkCreator, nofollowThunkCreator,  requestUsers } from '../../redux/users-reducer';
+import {  setUsers, setCurrentPage, setTotalUsersCount, isFetchingToggle, toggleFollowingProgress, getUsersThunkCreator, followThunkCreator, nofollowThunkCreator,  pageReverse } from '../../redux/users-reducer';
 import { getUsers } from '../../redux/users-selectors';
 
 
@@ -9,14 +9,14 @@ import { getUsers } from '../../redux/users-selectors';
 class UsersContainer extends React.Component {
 
   componentDidMount(){
-   /*  this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize); */
-   const {currentPage, pageSize} = this.props;
-   this.props.getUsers(currentPage, pageSize);
+    this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize);
+/*    const {currentPage, pageSize} = this.props; */
+  /*  this.props.getUsers(currentPage, pageSize); */
   }
   onChangePage = (pageNumber) => {
     const {pageSize} = this.props;
-   /*  this.props.getUsersThunkCreator(pageNumber, pageSize); */
-   this.props.getUsers(pageNumber, pageSize);
+    this.props.getUsersThunkCreator(pageNumber, pageSize);
+/*    this.props.getUsers(pageNumber, pageSize); */
   }
 
   render () {
@@ -32,6 +32,8 @@ class UsersContainer extends React.Component {
        toggleFollowing = {this.props.toggleFollowing}
        toggleFollowingProgress = {this.props.toggleFollowingProgress}
        nofollowThunkCreator = {this.props.nofollowThunkCreator}
+       flag = {this.props.flag}
+       pageReverse = {this.props.pageReverse}
       />
     )
  }
@@ -46,11 +48,13 @@ const mapStateToProps = (state) => {
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
-    toggleFollowing: state.usersPage.toggleFollowing
+    toggleFollowing: state.usersPage.toggleFollowing,
+    flag: state.usersPage.flag,
+
   }
 }
 
 
 
 
-export default connect(mapStateToProps, {setUsers, setCurrentPage, setTotalUsersCount, isFetchingToggle, toggleFollowingProgress, getUsersThunkCreator, followThunkCreator, nofollowThunkCreator, getUsers: requestUsers })(UsersContainer)
+export default connect(mapStateToProps, {setUsers, setCurrentPage, setTotalUsersCount, isFetchingToggle, toggleFollowingProgress, getUsersThunkCreator, followThunkCreator, nofollowThunkCreator, pageReverse })(UsersContainer)

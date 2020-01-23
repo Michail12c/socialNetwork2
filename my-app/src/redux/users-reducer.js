@@ -7,6 +7,8 @@ const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const SET_USERS_TOTAL_COUNT = 'SET-USERS-TOTAL-COUNT'; 
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING';
 const TOGGLE_FOLLOWING_PROGRESS = 'TOGGLE-FOLLOWING-PROGRESS'
+const CURRENT_FLAG = 'CURRENT-FLAG';
+const PAGE_REVERSE = 'PAGE-REVERSE';
 
 
 let initialState = {
@@ -15,7 +17,8 @@ let initialState = {
   totalUsersCount: 0,
   currentPage: 1,
   isFetching: false,
-  toggleFollowing: []
+  toggleFollowing: [],
+  flag: 0,
 };
 
 let usersReducer = (state = initialState, action) =>{
@@ -72,6 +75,18 @@ let usersReducer = (state = initialState, action) =>{
             :[state.toggleFollowing.some(id => id != action.userId )]
           }
         }
+        case CURRENT_FLAG:{
+          return {
+            ...state,
+            flag: action.currentPage
+          }
+        }
+        case PAGE_REVERSE: {
+          return {
+            ...state,
+            flag: action.flag - 20
+          }
+        }
        default:
          return state;
    }
@@ -84,6 +99,8 @@ export const setTotalUsersCount = (totalCount) => ({type: SET_USERS_TOTAL_COUNT,
 export const isFetchingToggle = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 export const toggleFollowingProgress = (isFetching, userId) => ({type:TOGGLE_FOLLOWING_PROGRESS, isFetching, userId});
 
+export const currentPageNumber = (currentPage) => ({type:CURRENT_FLAG, currentPage})
+export const pageReverse = (flag) => ({type: PAGE_REVERSE, flag})
 
 export const requestUsers = (page, pageSize) => {
   return async (dispatch) => {
@@ -99,6 +116,7 @@ export const requestUsers = (page, pageSize) => {
 
 export const getUsersThunkCreator = (currentPage, pageSize) => {
  return (dispatch) => {
+ dispatch (currentPageNumber(currentPage));// my function
  dispatch(setCurrentPage(currentPage));
   dispatch(isFetchingToggle(true));
   userAPI.getUsers(currentPage, pageSize)
