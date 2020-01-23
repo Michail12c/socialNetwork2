@@ -3,6 +3,7 @@ import { userAPI, profileAPI } from "../components/api/api";
 const ADD_POST  =  "ADD-POST";
 const SET_USER_PROFILE = "SET-USER-PROFILE";
 const SET_PROFILE_STATUS = "SET-PROFILE-STATUS";
+const SAVE_PHOTO_SUCCESS = "SAVE-PHOTO-SUCCESS";
 
 
 let initialState = {
@@ -38,6 +39,11 @@ const profileReducer = (state = initialState, action) => {
           ...state,
           status: action.status
         }
+        case SAVE_PHOTO_SUCCESS:
+        return{
+          ...state,
+          profile:{...state.profile, photos: action.photos}
+        }
     default:
       return state;
   } 
@@ -51,6 +57,9 @@ export const setUserProfile = (profile) => {
 }
 export const setProfileStatus= (status) => {
   return {type: SET_PROFILE_STATUS, status}
+}
+export const savePhotoSuccess = (photos) => {
+  return {type: SAVE_PHOTO_SUCCESS, photos}
 }
 
 export const userProfileThunkCreator = (userId) => {
@@ -89,6 +98,12 @@ export const updateProfilePhotoThunk = (status) => {
     }) 
   }
 }
+export const savePhoto = (file) => async (dispatch) => {
+ let response = await profileAPI.savePhoto(file);
+      if(response.data.resultCode === 0){
+        dispatch(savePhotoSuccess(response.data.data.photos));
+      }
+    }
 
 
 

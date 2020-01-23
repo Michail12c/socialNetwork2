@@ -1,26 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Users from './Users';
-import {  setUsers, setCurrentPage, setTotalUsersCount, isFetchingToggle, toggleFollowingProgress, getUsersThunkCreator, followThunkCreator, nofollowThunkCreator } from '../../redux/users-reducer';
+import {  setUsers, setCurrentPage, setTotalUsersCount, isFetchingToggle, toggleFollowingProgress, getUsersThunkCreator, followThunkCreator, nofollowThunkCreator,  requestUsers } from '../../redux/users-reducer';
+import { getUsers } from '../../redux/users-selectors';
 
 
 
 class UsersContainer extends React.Component {
 
   componentDidMount(){
-    this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize);
+   /*  this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize); */
+   const {currentPage, pageSize} = this.props;
+   this.props.getUsers(currentPage, pageSize);
   }
   onChangePage = (pageNumber) => {
-    this.props.getUsersThunkCreator(pageNumber, this.props.pageSize);
+    const {pageSize} = this.props;
+   /*  this.props.getUsersThunkCreator(pageNumber, pageSize); */
+   this.props.getUsers(pageNumber, pageSize);
   }
 
   render () {
-  let pageCalculateSize = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
-  let pages = [];
-  for (let i = 1; i <= 20; i ++){
-    pages.push(i);
-  }
- 
 
     return (
       <Users totalUsersCount = {this.props.totalUsersCount}
@@ -42,7 +41,7 @@ class UsersContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.usersPage.users,
+    users: getUsers(state),
     pageSize: state.usersPage.pageSize,
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
@@ -54,4 +53,4 @@ const mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps, {setUsers, setCurrentPage, setTotalUsersCount, isFetchingToggle, toggleFollowingProgress, getUsersThunkCreator, followThunkCreator, nofollowThunkCreator })(UsersContainer)
+export default connect(mapStateToProps, {setUsers, setCurrentPage, setTotalUsersCount, isFetchingToggle, toggleFollowingProgress, getUsersThunkCreator, followThunkCreator, nofollowThunkCreator, getUsers: requestUsers })(UsersContainer)

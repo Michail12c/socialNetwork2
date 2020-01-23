@@ -3,11 +3,13 @@ import styles from './Users.module.css';
 import userPhoto from './../icon/user.png';
 import Preloader from '../common/Preloader';
 import { NavLink } from 'react-router-dom';
+import Paginator from './Paginator';
 
 
 
-const Users = (props) => {
-  let pageCalculateSize = Math.ceil(props.totalUsersCount / props.pageSize);
+const Users = ({pageSize, currentPage, onChangePage, totalUsersCount, users, ...props}) => {
+   let pageCalculateSize = Math.ceil(totalUsersCount / pageSize);
+
   let pages = [];
   for (let i = 1; i <= 20; i++) {
     pages.push(i);
@@ -16,18 +18,23 @@ const Users = (props) => {
     <div className={styles.users}>
       {props.isFetching ? <Preloader /> : null}
       <div>
-        {pages.map(page => {
+    {/*   { <Paginator onChangePage = {onChangePage} currentPage = {currentPage} 
+        totalUsersCount = {totalUsersCount} pageSize = {pageSize} /> } */}
+      
+       { pages.map(page => {
           return <span className={props.currentPage === page && styles.selected}
             onClick={() => { props.onChangePage(page) }}
           >{page}</span>
         })
-        }
-        {/* написати довантаження нових даних по сторінках */}
-        ... {pageCalculateSize}
+
+      }
+      ... {pageCalculateSize}
+   
+        
 
       </div>
       {
-        props.users.map(user => <div className={styles.usersView}>
+         users.map(user => <div className={styles.usersView}>
           <div className={styles.icon}>
             <NavLink to={'/profile/' + user.id} >
               <img src={user.photos.small != null ? user.photos.small : userPhoto} alt="icon" />

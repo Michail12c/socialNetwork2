@@ -3,9 +3,9 @@
     margin-top: 54px;
     margin-left: 5px;
     width: 85%;
-    color:white;
+    color:black;
     padding: 40px;
-    overflow: hidden;
+   /*  overflow: hidden; */
 }
 .icon{
   padding-left: 20px;
@@ -37,5 +37,17 @@ span{
 }
 span:hover{
   cursor:pointer;
+}
+.paginator {
+  margin: 10px;
+}
+.pageNumber {
+  padding: 2px;
+  border: 1px solid grey;
+}
+
+.pageNumber.selectedPage {
+  font-weight: bold;
+  border-color: black;
 }
 
