@@ -12,6 +12,7 @@ import Login from './components/login/Login';
 import { initializeAPP } from './redux/app-reducer';
 import { compose } from 'redux';
 import Preloader from './components/common/Preloader';
+import SettingsContainer from './components/settings/SettingsContainer';
 
 const ImagesContainer = React.lazy( () => import('./components/images/ImagesContainer'));
 
@@ -39,6 +40,7 @@ class App extends React.Component {
         </Suspense> 
         }}/>
       <Route path ='/Users' render = {() => <UsersContainer/>} />
+      <Route path = '/Settings' render = {() => <SettingsContainer/>} />
       <Route path = '/Login' render = {() => <Login/> } />
       <Route path = '*' render = {() => <div className
       = 'notFound'>404 not found</div>}/>

@@ -4,7 +4,6 @@ import styles from './ProfileInfo.module.css';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 import userPhoto from '../icon/user.png'
 import { Input } from '../utils/FormsControls';
-import ProfileDataForm from './ProfileDataForm';
 /* import ProfileStatus from './ProfileStatus'; */
 
 
@@ -23,11 +22,11 @@ console.log(profile)
      <div className = {styles.profile}>
         <div>
           <img src={profile.photos.large || userPhoto} className = {styles.namePhoto}/>
-          {isOwner && <input type = {'file'} onChange = {onMainPhotoSelected}/>}
+          {/* {isOwner && <input type = {'file'} onChange = {onMainPhotoSelected}/>} */}
         </div>
         {
         
-           editMode ? <ProfileDataForm profile = {profile}/>  : <ProfileData profile = {profile} isOwner = {isOwner} goToEditMode = {() => {setEditMode(true)}}/>
+          <ProfileData profile = {profile} isOwner = {isOwner} goToEditMode = {() => {setEditMode(true)}}/>
           } 
         <ProfileStatusWithHooks status = {status} updateProfileThunk = {updateProfileThunk}/>
         {/*  <div className = {styles.myName}>
@@ -45,14 +44,22 @@ console.log(profile)
 }
 const ProfileData = ({profile, isOwner, goToEditMode}) => {
   return ( 
-     <div>
-       {isOwner && <div><button onClick = {goToEditMode}>edit</button></div>}
-       <div className = {styles.myName}>
-        {profile.fullName}
-        </div>
+       <div >
+         <div className = {styles.myName}> 
+         <div>
+         my name: <b>{profile.fullName}</b> 
+         </div>
+         <div>
+         about me: <b> {profile.aboutMe}</b>
+         </div>
+         <div>
+         discription of job: <b>{profile.lookingForAJobDescription}</b>
+         </div>
+   
          <b>contact</b>{Object.keys(profile.contacts).map(key => {
             return <Contact contactTitle = {key} contactValue = {profile.contacts[key]}/>
          })}
+         </div>
      </div>
   )
 } 

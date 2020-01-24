@@ -24,7 +24,7 @@ const Navbar = () =>{
          <a href="">Music</a>
        </div>
        <div className = {`${styles.reference} ${styles.lastRef}`}>
-         <a href="">Settings</a>
+         <NavLink to = "/Settings" activeClassName = {styles.active}>Settings</NavLink>
        </div>
     </div>
   )

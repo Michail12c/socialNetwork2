@@ -1,0 +1,22 @@
+.settings{
+  margin-top: 54px;
+  margin-left: 5px;
+  width: 85%;
+  color:rgb(126, 78, 78);
+  background-color: rgb(71, 177, 177);
+  padding: 30px 30px;
+}
+.editProfile{
+  margin-top: 20px;
+  font-weight: bold;
+}
+.editProfile:hover{
+  cursor: pointer;
+  color:white;
+}
+.profileMode{
+  color:rgb(126, 78, 78);
+}
+input{
+  margin-top: 40px;
+}
