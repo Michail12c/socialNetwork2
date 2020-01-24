@@ -8,7 +8,6 @@ import { login } from '../../redux/auth-reducer';
 import { Redirect } from 'react-router-dom';
 
 let maxLength50 = maxLengthCreator(50);
-
 const LoginForm = (props) => {
   return (
     <form onSubmit = {props.handleSubmit} >
@@ -21,8 +20,13 @@ const LoginForm = (props) => {
          placeholder = {'Password'}  validate = {[required, maxLength50]} />
        </div>
        <div>
-         <Field component = {Input} validate = {[required]}  name = {'rememberMe'} type= {'checkbox'} /> Remember me
+         <Field component = {Input}   name = {'rememberMe'} type= {'checkbox'} /> Remember me
        </div>
+       {props.captchaUrl && <img src = {props.captchaUrl}/> }
+       {props.captchaUrl && 
+         <Field component = {Input} name = {'captcha'} type = {'captcha'}
+         placeholder = {'captcha'}/>
+       }
         { props.error &&
            <div className = {styles.error}> {props.error}</div>
         }
@@ -39,7 +43,7 @@ let LoginReduxForm = reduxForm({
 
 const Login = (props) => {
   const onSubmit = (formData) => {
-     props.login(formData.email, formData.password, formData.rememberMe)
+     props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
   }
   if(props.isAuth) return <Redirect to = {'/profile'}/>
   return (
@@ -47,14 +51,15 @@ const Login = (props) => {
       <h2>
         Login
       </h2>
-      <LoginReduxForm onSubmit = {onSubmit}/>
+      <LoginReduxForm onSubmit = {onSubmit} captchaUrl = {props.captchaUrl}/>
     </div>
   )
 }
 
 const mapStateToProps = (state) => {
   return {
-    isAuth:state.auth.isAuth
+    isAuth:state.auth.isAuth,
+    captchaUrl:state.auth.captchaUrl
   }
 }
 
