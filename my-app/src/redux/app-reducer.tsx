@@ -1,15 +1,17 @@
 import { loginThunkCreator } from "./auth-reducer";
-import { authAPI } from "../components/api/api";
 
 
 
-const INITIALIZED_SUCCESS  = 'INITIALIZED-SUCCESS';
+const INITIALIZED_SUCCESS:string  = 'INITIALIZED-SUCCESS';
 
 let initialState = {
   initialized: false
 }
+type getTypeActionTusk = {
+  type: 'INITIALIZED-SUCCESS'
+}
 
-let appReducer = (state = initialState, action) => {
+let appReducer = (state = initialState, action:getTypeActionTusk) => {
     switch(action.type){
       case INITIALIZED_SUCCESS: {
         return {
@@ -24,7 +26,7 @@ let appReducer = (state = initialState, action) => {
 
 export const initializedSuccess = () => ({type: INITIALIZED_SUCCESS});
 
-export const  initializeAPP = () => (dispatch) => {
+export const  initializeAPP = () => (dispatch:Function) => {
 
   let promise = dispatch(loginThunkCreator())
   promise.then( () => {

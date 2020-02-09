@@ -4,7 +4,6 @@ import { Field, reduxForm } from 'redux-form';
 
 const EditProfile = (props) => {
   const onSubmit = (formData) => {
-    console.log(formData)
     props.saveProfile(formData)
   }
 

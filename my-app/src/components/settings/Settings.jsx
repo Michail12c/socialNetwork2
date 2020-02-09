@@ -27,7 +27,8 @@ const onMainPhotoSelected = (e) => {
 
   return (
     <div className = {styles.settings}>
-      { !editMode ? <div> <h3>Settings</h3>
+       <h3>Settings</h3>
+      { !editMode ? <div>
       <div className = {styles.editProfile} onClick= {activateEditMode}>Edit Profile</div></div> : <EditProfile deactivateMode = {deactivateMode} saveProfile = {props.saveProfile}/>}
       {!editPhoto ? <div className = {styles.editProfile} onClick= {savePhoto}>Added photo</div> : <div> <input type = {'file'}  onChange = {onMainPhotoSelected}/> 
       <div><button onClick = {deactivateModePhoto}>Зберегти фото</button></div> </div>}
