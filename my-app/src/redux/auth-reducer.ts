@@ -1,5 +1,5 @@
 /* import { getCaptchaURLSuccess } from './auth-reducer'; */
-import { authAPI, securityAPI } from "../components/api/api";
+import { authAPI, securityAPI, ResultCodesEnum } from "../components/api/api";
 import { stopSubmit } from "redux-form";
 
 
@@ -55,30 +55,30 @@ export const getCaptchaURLSuccess = (captchaUrl: string): GetCaptchaURLSuccessTy
 }
 
 export const loginThunkCreator = () => async (dispatch: any) => {
-  let response = await authAPI.me() 
-      if(response.data.resultCode === 0){
-        let {id, email, login} =  response.data.data
+  let meData = await authAPI.me() 
+      if(meData.resultCode === ResultCodesEnum.Success){
+        let {id, email, login} =  meData.data
         dispatch(setUserData(id, email, login, true))
       }
 }
 
 export const login = (email: string, password: string, rememberMe: boolean, captcha: string) => async (dispatch: any) =>  { 
-  let response = await authAPI.login(email, password, rememberMe, captcha) 
-      if(response.data.resultCode === 0){
+  let loginData = await authAPI.login(email, password, rememberMe, captcha) 
+      if(loginData.resultCode === ResultCodesEnum.Success){
         dispatch(loginThunkCreator())
       }
       else {
-        if(response.data.resultCode === 10){
+        if(loginData.resultCode === ResultCodesEnum.CaptchaIsRequired){
           dispatch(getCaptchaURL());
         }
-        let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Somme error'; 
+        let message = loginData.messages.length > 0 ? loginData.messages[0] : 'Somme error'; 
         dispatch( stopSubmit('login', {_error: message}))
       }
 }
 
 export const logout = () => async (dispatch: any) => {
    let response = await authAPI.logout() 
-      if(response.data.resultCode === 0){
+      if(response.data.resultCode === ResultCodesEnum.Success){
         dispatch(setUserData(null, null, null, false))
       }
 }
